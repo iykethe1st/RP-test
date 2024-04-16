@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+}
+
+.bg-custom {
+  background-image: url("/home.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.relative-dot {
+  position: relative;
+}
+
+.dot {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background-color: white; /* Choose your desired color */
+  border-radius: 50%;
+  top: 50%; /* Adjust as needed */
+  left: -2.5px; /* Adjust as needed */
+  transform: translate(-50%, -50%);
+}
+
+/* Style the vertical line */
+.relative-dot::after {
+  content: "";
+  position: absolute;
+  width: 1px;
+  background-color: white;
+  top: 0;
+  bottom: 0;
+  left: -3px;
+}
