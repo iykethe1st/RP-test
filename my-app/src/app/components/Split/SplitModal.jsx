@@ -27,8 +27,6 @@ const SplitModal = ({ onClose, splitAmount, lowerSplit, upperSplit }) => {
     }
   }, [step]);
 
-  console.log({ step });
-
   return (
     <>
       {step === "confirm" && (

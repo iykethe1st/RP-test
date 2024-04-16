@@ -7,7 +7,7 @@ import InputSlider from "react-input-slider";
 import SplitModal from "./SplitModal";
 
 const SplitInput = ({ connected, handleConnect }) => {
-  const [toggleSplitModal, setToggleSplitModal] = useState(true);
+  const [toggleSplitModal, setToggleSplitModal] = useState(false);
   const [splitAmount, setSplitAmount] = useState("");
   const [lowerSplit, setLowerSplit] = useState(150);
   const [upperSplit, setUpperSplit] = useState(150);
