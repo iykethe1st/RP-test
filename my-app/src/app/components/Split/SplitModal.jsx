@@ -6,7 +6,13 @@ import { ImSpinner2 } from "react-icons/im";
 import { IoCloseOutline } from "react-icons/io5";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 
-const SplitModal = ({ onClose, splitAmount, lowerSplit, upperSplit }) => {
+const SplitModal = ({
+  onClose,
+  splitAmount,
+  lowerSplit,
+  upperSplit,
+  selectedToken,
+}) => {
   const [step, setStep] = useState("confirm");
 
   const renderBtnText = () => {
@@ -51,8 +57,13 @@ const SplitModal = ({ onClose, splitAmount, lowerSplit, upperSplit }) => {
                 <div className="text-xs text-[#222222]">I deposit</div>
 
                 <div className="flex items-center gap-1.5 text-[24px] text-[#222222] cursor-pointer">
-                  <Image width={24} height={24} src={"/eth.png"} alt="eth" />
-                  150 ETH
+                  <Image
+                    width={24}
+                    height={24}
+                    src={`/${selectedToken}.png`}
+                    alt={selectedToken}
+                  />
+                  {splitAmount} {selectedToken}
                 </div>
                 <div className="text-[#8CA8C3] text-[13px]">
                   ${" "}

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { GoChevronDown } from "react-icons/go";
-import { Button } from "../wrapped";
-import { useState } from "react";
+import { Button, TokenSelectorModal } from "../wrapped";
+import { useEffect, useState } from "react";
 import SplitSlider from "./SplitSlider";
 import InputSlider from "react-input-slider";
 import SplitModal from "./SplitModal";
@@ -13,6 +13,9 @@ const SplitInput = ({ connected, handleConnect }) => {
   const [upperSplit, setUpperSplit] = useState(150);
   const [value, setValue] = useState(150); // Initial value set to 150
   const [splitValue, setSplitValue] = useState({ x: 0.5 });
+  const [toggleTokenSelector, setToggleTokenSelector] = useState(false);
+  const [selectedToken, setSelectedToken] = useState("ETH");
+  const [walletBalance, setWalletBalance] = useState(200.0234988);
 
   const handleSliderChange = (x) => {
     setSplitValue({ x: parseFloat(x.toFixed(2)) });
@@ -47,10 +50,22 @@ const SplitInput = ({ connected, handleConnect }) => {
     return parseFloat(splitAmount * 3200).toFixed(2);
   };
 
+  useEffect(() => {
+    setSplitAmount("");
+  }, [selectedToken]);
+
   return (
     <>
+      {toggleTokenSelector && (
+        <TokenSelectorModal
+          setSelectedToken={(token) => setSelectedToken(token)}
+          onClose={() => setToggleTokenSelector(false)}
+        />
+      )}
+
       {toggleSplitModal && (
         <SplitModal
+          selectedToken={selectedToken}
           splitAmount={splitAmount}
           upperSplit={upperSplit}
           lowerSplit={lowerSplit}
@@ -65,9 +80,17 @@ const SplitInput = ({ connected, handleConnect }) => {
         <div className="px-[15.86px] py-[13.75px] flex flex-col gap-0.5">
           <div className="text-xs">I deposit</div>
           <div className="flex items-center w-full justify-between">
-            <div className="flex items-center gap-1.5 font-semibold text-[20px] cursor-pointer">
-              <Image width={24} height={24} src={"/eth.png"} alt="eth" />
-              ETH
+            <div
+              onClick={() => setToggleTokenSelector(true)}
+              className="flex items-center gap-1.5 font-semibold text-[20px] cursor-pointer"
+            >
+              <Image
+                width={24}
+                height={24}
+                src={`/${selectedToken.toLowerCase()}.png`}
+                alt="eth"
+              />
+              {selectedToken}
               <Image
                 className=""
                 width={20}
@@ -98,8 +121,15 @@ const SplitInput = ({ connected, handleConnect }) => {
                       alt="wallet"
                     />
                   </div>
-                  <div>200.0234988 ETH</div>
-                  <div className="text-[#3290FF] font-bold">Max</div>
+                  <div>
+                    {walletBalance} {selectedToken}
+                  </div>
+                  <div
+                    onClick={() => setSplitAmount(walletBalance.toString())}
+                    className="text-[#3290FF] font-bold cursor-pointer"
+                  >
+                    Max
+                  </div>
                 </div>
               )}
             </div>
