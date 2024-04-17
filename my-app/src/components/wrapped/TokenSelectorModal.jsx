@@ -66,7 +66,7 @@ const TokenSelectorModal = ({ onClose, setSelectedToken, selectedToken }) => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-end px-[15rem] bg-[#294B63] bg-opacity-50 backdrop-blur-[2px]">
-      <div className="bg-white text-[#222222] w-[420px] pt-4 pb-2 absolute flex flex-col right-[12rem] rounded-[30px] text-[14px]">
+      <div className="bg-white text-[#222222] w-[420px] pt-4 pb-2 absolute flex flex-col right-[12rem] rounded-[30px] text-[14px] animate__animated animate__zoomInUp">
         <IoCloseOutline
           onClick={onClose}
           className="self-end mr-2 cursor-pointer w-6 h-6"

@@ -22,7 +22,7 @@ const NavBar = ({ connected, handleConnect, handleDisconnect, loading }) => {
 
   return (
     <div className="flex justify-between items-center py-10">
-      <div>
+      <div className="animate__animated animate__fadeInLeft">
         <Image
           className=""
           src={"/logo.png"}
@@ -31,7 +31,7 @@ const NavBar = ({ connected, handleConnect, handleDisconnect, loading }) => {
           alt="logo"
         />
       </div>
-      <div className="flex gap-8">
+      <div className="flex gap-8 animate__animated animate__fadeInDown">
         <div className="flex items-center gap-2 cursor-pointer">
           <Image width={19} height={19} src={"/split.png"} alt="" />
           <div
@@ -130,13 +130,13 @@ const NavBar = ({ connected, handleConnect, handleDisconnect, loading }) => {
             )}
           </div>
         ) : (
-          <>
+          <div className="animate__animated animate__fadeInRight">
             <Button
               // onClick={handleConnect}
               onClick={openConnectModal}
               label="Connect Wallet"
             />
-          </>
+          </div>
         )}
       </div>
     </div>

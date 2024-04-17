@@ -1,5 +1,5 @@
-import "./globals.css";
 import "animate.css";
+import "./globals.css";
 import "@rainbow-me/rainbowkit/styles.css";
 import { Roboto } from "next/font/google";
 import { Providers } from "./Providers";

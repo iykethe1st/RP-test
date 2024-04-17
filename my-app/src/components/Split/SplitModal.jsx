@@ -37,7 +37,7 @@ const SplitModal = ({
     <>
       {step === "confirm" && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#294B63] bg-opacity-50 backdrop-blur-[2px]	">
-          <div className="bg-white p-6 rounded-[30px] w-[642px] relative flex flex-col">
+          <div className="bg-white p-6 rounded-[30px] w-[642px] relative flex flex-col animate__animated animate__zoomInUp">
             <div
               className="cursor-pointer absolute top-[15px] right-[20px]"
               onClick={onClose}
@@ -215,7 +215,7 @@ const SplitModal = ({
 
       {step === "processing" && (
         <div className="fixed inset-0 z-50 flex items-start py-32 justify-center bg-[#294B63] bg-opacity-50 backdrop-blur-[2px]	">
-          <div className="bg-white border border-[#F29C35] pl-[30px] pr-[14px] py-[14px] rounded-[30px] w-[463px] relative flex items-center justify-between">
+          <div className="bg-white border border-[#F29C35] pl-[30px] pr-[14px] py-[14px] rounded-[30px] w-[463px] relative flex items-center justify-between animate__animated animate__zoomInUp">
             <div className="flex items-center gap-[10px] text-[#F29C35]">
               <div>
                 <Image width={25} height={25} src={"/timer.png"} alt="timer" />
@@ -239,7 +239,7 @@ const SplitModal = ({
 
       {step === "successfull" && (
         <div className="fixed inset-0 z-50 flex items-start py-[105px] justify-center	">
-          <div className="bg-white border border-[#68C269] pl-[30px] pr-[14px] py-[14px] rounded-[30px] w-[463px] relative flex flex-col gap-2">
+          <div className="bg-white border border-[#68C269] pl-[30px] pr-[14px] py-[14px] rounded-[30px] w-[463px] relative flex flex-col gap-2 animate__animated animate__zoomInUp">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-[10px] text-[#68C269]">
                 <div>
@@ -274,7 +274,7 @@ const SplitModal = ({
 
       {step === "failed" && (
         <div className="fixed inset-0 z-50 flex items-center py-32 justify-center bg-[#294B63] bg-opacity-50 backdrop-blur-[2px]	">
-          <div className="bg-white p-[14px] rounded-[30px] w-[642px] relative flex flex-col items-center justify-between gap-4 px-10 py-8">
+          <div className="bg-white p-[14px] rounded-[30px] w-[642px] relative flex flex-col items-center justify-between gap-4 px-10 py-8 animate__animated animate__zoomInUp">
             <div
               className="cursor-pointer absolute top-[15px] right-[20px]"
               onClick={onClose}

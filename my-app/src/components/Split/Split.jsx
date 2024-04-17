@@ -41,7 +41,7 @@ const Split = ({ connected, handleConnect }) => {
 
         {toggleFaq && (
           <div className="w-full flex flex-col gap-4 mt-2">
-            <div className="bg-[#D3E3EB] rounded-[24px] pl-[15px] pr-[25px] py-[14px]">
+            <div className="bg-[#D3E3EB] rounded-[24px] pl-[15px] pr-[25px] py-[14px] animate__animated animate__fadeInUp">
               <div
                 onClick={() => setToggleSplitFaqIndex(!toggleSplitFaqIndex)}
                 className="flex justify-between items-center"
@@ -64,7 +64,7 @@ const Split = ({ connected, handleConnect }) => {
               )}
             </div>
 
-            <div className="bg-[#D3E3EB] rounded-[24px] pl-[15px] pr-[25px] py-[14px]">
+            <div className="bg-[#D3E3EB] rounded-[24px] pl-[15px] pr-[25px] py-[14px] animate__animated animate__fadeInUp">
               <div
                 onClick={() => setToggleRiskFaqIndex(!toggleRiskFaqIndex)}
                 className="flex justify-between items-center"

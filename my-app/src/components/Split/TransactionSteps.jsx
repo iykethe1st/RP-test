@@ -69,7 +69,7 @@ const TransactionSteps = () => {
           </div>
         </div>
         {toggleSteps && (
-          <div className="flex items-center px-[12px] gap-0 pt-[8px] text-xs">
+          <div className="flex items-center px-[12px] gap-0 pt-[8px] text-xs animate__animated animate__fadeInUp">
             <ListWithLines items={items} />
           </div>
         )}
