@@ -2,10 +2,23 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Button } from "./wrapped";
+import {
+  ConnectButton,
+  useAccountModal,
+  useConnectModal,
+} from "@rainbow-me/rainbowkit";
+import { useAccount } from "wagmi";
+import { shortenWalletAddress } from "@/utils";
 
 const NavBar = ({ connected, handleConnect, handleDisconnect, loading }) => {
   const [activeTab, setActive] = useState("Split");
   const [toggleDropdown, setToggleDropdown] = useState(false);
+  const { openConnectModal } = useConnectModal();
+  const { isConnected, address } = useAccount();
+  const { openAccountModal } = useAccountModal();
+
+  console.log({ isConnected });
+  console.log({ address });
 
   return (
     <div className="flex justify-between items-center py-10">
@@ -58,7 +71,7 @@ const NavBar = ({ connected, handleConnect, handleDisconnect, loading }) => {
         </div>
       </div>
       <div>
-        {connected ? (
+        {isConnected ? (
           <div className="w-full bg-[#9AB1BD] text-white p-1 rounded-[30px] flex items-center gap-4 relative">
             <div className="bg-[#EAEEF2] w-[32px] h-[32px] rounded-full relative">
               {" "}
@@ -71,7 +84,7 @@ const NavBar = ({ connected, handleConnect, handleDisconnect, loading }) => {
               />
             </div>
 
-            <div>7bdC43...2F31</div>
+            <div>{shortenWalletAddress(address)}</div>
 
             <div
               onClick={() => setToggleDropdown(!toggleDropdown)}
@@ -108,7 +121,7 @@ const NavBar = ({ connected, handleConnect, handleDisconnect, loading }) => {
                 </div>
 
                 <button
-                  onClick={handleDisconnect}
+                  onClick={openAccountModal}
                   className="w-full text-right font-bold text-[#9AB1BD] hover:text-black/20 transition ease-in-out"
                 >
                   Disconnect Wallet
@@ -117,7 +130,13 @@ const NavBar = ({ connected, handleConnect, handleDisconnect, loading }) => {
             )}
           </div>
         ) : (
-          <Button onClick={handleConnect} label="Connect Wallet" />
+          <>
+            <Button
+              // onClick={handleConnect}
+              onClick={openConnectModal}
+              label="Connect Wallet"
+            />
+          </>
         )}
       </div>
     </div>

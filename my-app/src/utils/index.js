@@ -15,3 +15,13 @@ export const addCommasToNumber = (x) => {
 
   return addSeperator(x);
 };
+
+export const shortenWalletAddress = (walletAddress) => {
+  if (typeof walletAddress !== "string" || walletAddress.length < 8) {
+    return "Invalid wallet address";
+  }
+
+  const prefix = walletAddress.slice(0, 6);
+  const suffix = walletAddress.slice(-4);
+  return prefix + "..." + suffix;
+};

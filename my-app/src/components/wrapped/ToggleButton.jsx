@@ -17,7 +17,7 @@ const ToggleButton = ({ setIsChecked, isChecked }) => {
           checked={isChecked}
           onChange={toggleHandler}
         />
-        <div className="toggle-path bg-[#6F6F76] w-[35px] h-[18px] rounded-full shadow-inner text-[7px] text-white flex flex-col justify-center px-[4px] transition ease-in-out duration-300">
+        <div className="toggle-path bg-[#6F6F76] w-[38px] h-[18px] rounded-full shadow-inner text-[7px] text-white flex flex-col justify-center px-[4px] transition ease-in-out duration-300">
           <div className={`${isChecked ? "text-left" : "text-right"} `}>
             {isChecked ? "ON" : "OFF"}
           </div>

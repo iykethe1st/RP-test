@@ -2,19 +2,16 @@
 import { useState } from "react";
 import NavBar from "../components/NavBar";
 import { Split } from "../components/Split";
+import { useAccount } from "wagmi";
 
 export default function Home() {
-  const [connected, setConnected] = useState(false);
+  const { isConnected } = useAccount();
 
   return (
     <main className="flex min-h-screen flex-col bg-cover bg-center bg-custom text-[#222222] px-20 pb-16">
-      <NavBar
-        connected={connected}
-        handleDisconnect={() => setConnected(false)}
-        handleConnect={() => setConnected(true)}
-      />
+      <NavBar connected={isConnected} />
       <div className="self-end">
-        <Split connected={connected} handleConnect={() => setConnected(true)} />
+        <Split connected={isConnected} />
       </div>
     </main>
   );
