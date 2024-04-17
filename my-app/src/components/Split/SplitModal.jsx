@@ -33,6 +33,8 @@ const SplitModal = ({
     }
   }, [step]);
 
+  console.log({ selectedToken });
+
   return (
     <>
       {step === "confirm" && (
@@ -57,12 +59,14 @@ const SplitModal = ({
                 <div className="text-xs text-[#222222]">I deposit</div>
 
                 <div className="flex items-center gap-1.5 text-[24px] text-[#222222] cursor-pointer">
-                  <Image
-                    width={24}
-                    height={24}
-                    src={`/${selectedToken}.png`}
-                    alt={selectedToken}
-                  />
+                  {selectedToken && (
+                    <Image
+                      width={24}
+                      height={24}
+                      src={`/${selectedToken}.png`}
+                      alt={selectedToken}
+                    />
+                  )}
                   {splitAmount} {selectedToken}
                 </div>
                 <div className="text-[#8CA8C3] text-[13px]">
