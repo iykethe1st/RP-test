@@ -2,9 +2,12 @@ import Image from "next/image";
 import SplitInput from "./SplitInput";
 import { useState } from "react";
 import TransactionSteps from "./TransactionSteps";
+import { HiOutlineMinus, HiOutlinePlus } from "react-icons/hi2";
 
 const Split = ({ connected, handleConnect }) => {
   const [toggleFaq, setToggleFaq] = useState(false);
+  const [toggleSplitFaqIndex, setToggleSplitFaqIndex] = useState(false);
+  const [toggleRiskFaqIndex, setToggleRiskFaqIndex] = useState(false);
 
   return (
     <div className="flex flex-col">
@@ -22,21 +25,66 @@ const Split = ({ connected, handleConnect }) => {
       <div className="bg-white/50 rounded-[20px] px-[15px] py-3 mt-[60px] cursor-pointer">
         <div className="w-full flex items-center justify-between">
           <div>FAQ</div>
-          <div>
+          <div onClick={() => setToggleFaq(!toggleFaq)}>
             <Image
               className=""
               width={20}
               height={20}
-              src={"/chevdown-dark.png"}
+              src={`/${toggleFaq ? "chevup-dark" : "chevdown-dark"}.png`}
               alt="down"
             />
           </div>
         </div>
 
         {toggleFaq && (
-          <div>
-            <div></div>
-            <div></div>
+          <div className="w-full flex flex-col gap-4 mt-2">
+            <div className="bg-[#D3E3EB] rounded-[24px] pl-[15px] pr-[25px] py-[14px]">
+              <div className="flex justify-between items-center">
+                <div className="font-medium text-[14px]">
+                  How does the split functionality work?
+                </div>
+                <div
+                  onClick={() => setToggleSplitFaqIndex(!toggleSplitFaqIndex)}
+                  className="font-light text-[13px] text-[#7A8AA0]"
+                >
+                  {toggleSplitFaqIndex ? (
+                    <HiOutlineMinus className="w-4 h-4" />
+                  ) : (
+                    <HiOutlinePlus className="w-4 h-4" />
+                  )}
+                </div>
+              </div>
+              {toggleSplitFaqIndex && (
+                <div className="font-light text-[13px] text-[#7A8AA0] pt-2">
+                  XXXXXX
+                </div>
+              )}
+            </div>
+
+            <div className="bg-[#D3E3EB] rounded-[24px] pl-[15px] pr-[25px] py-[14px]">
+              <div className="flex justify-between items-center">
+                <div className="font-medium text-[14px]">
+                  {" "}
+                  What are RiskON BTC and RiskOFF BTC, and how do they differ
+                  from each other?
+                </div>
+                <div
+                  onClick={() => setToggleRiskFaqIndex(!toggleRiskFaqIndex)}
+                  className="font-light text-[13px] text-[#7A8AA0]"
+                >
+                  {toggleRiskFaqIndex ? (
+                    <HiOutlineMinus className="w-4 h-4" />
+                  ) : (
+                    <HiOutlinePlus className="w-4 h-4" />
+                  )}
+                </div>
+              </div>
+              {toggleRiskFaqIndex && (
+                <div className="font-light text-[13px] text-[#7A8AA0] pt-2">
+                  XXXXXX
+                </div>
+              )}
+            </div>
           </div>
         )}
       </div>
