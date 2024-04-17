@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { IoCloseOutline, IoSearchOutline } from "react-icons/io5";
 
 const FREQUENTLY_USED_TOKENS = [
@@ -50,11 +50,17 @@ const TOKENS = [
   },
 ];
 
-const TokenSelectorModal = ({ onClose, setSelectedToken }) => {
+const TokenSelectorModal = ({ onClose, setSelectedToken, selectedToken }) => {
+  const [searchQuery, setSearchQuery] = useState("");
+
   const handleTokenSelect = (token) => {
     setSelectedToken(token);
     onClose();
   };
+
+  const filteredTokens = TOKENS.filter((token) =>
+    token.symbol.toUpperCase().includes(searchQuery.toUpperCase())
+  );
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-end px-[15rem] bg-[#294B63] bg-opacity-50 backdrop-blur-[2px]">
@@ -65,11 +71,12 @@ const TokenSelectorModal = ({ onClose, setSelectedToken }) => {
         />
         <div className="mx-6 rounded-[30px] text-[12px] flex gap-2 items-center border border-[#E4E4E4] p-[10px] w-[330px]">
           <IoSearchOutline />
-
           <input
             className="focus:outline-none rounded-[30px]"
             placeholder="Search Token"
             type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
         <div className="px-6">
@@ -95,11 +102,13 @@ const TokenSelectorModal = ({ onClose, setSelectedToken }) => {
           </div>
         </div>
         <div className="border-t px-6 border-t-[#E4E4E4] w-full flex flex-col my-8 ">
-          {TOKENS.map((token, index) => (
+          {filteredTokens.map((token, index) => (
             <div
               onClick={() => handleTokenSelect(token.symbol.toUpperCase())}
               key={index}
-              className="flex items-center justify-between py-2 cursor-pointer"
+              className={`${
+                selectedToken === token.symbol.toUpperCase() && "text-[#BBBFCF]"
+              } flex items-center justify-between py-2 cursor-pointer`}
             >
               <div className="flex items-center gap-4">
                 <div>

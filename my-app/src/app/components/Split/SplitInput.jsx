@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { GoChevronDown } from "react-icons/go";
-import { Button, TokenSelectorModal } from "../wrapped";
+import { Button, ToggleButton, TokenSelectorModal } from "../wrapped";
 import { useEffect, useState } from "react";
 import SplitSlider from "./SplitSlider";
 import InputSlider from "react-input-slider";
@@ -8,6 +8,8 @@ import SplitModal from "./SplitModal";
 
 const SplitInput = ({ connected, handleConnect }) => {
   const [toggleSplitModal, setToggleSplitModal] = useState(false);
+  const [toggleSettings, setToggleSettings] = useState(false);
+
   const [splitAmount, setSplitAmount] = useState("");
   const [lowerSplit, setLowerSplit] = useState(150);
   const [upperSplit, setUpperSplit] = useState(150);
@@ -15,7 +17,13 @@ const SplitInput = ({ connected, handleConnect }) => {
   const [splitValue, setSplitValue] = useState({ x: 0.5 });
   const [toggleTokenSelector, setToggleTokenSelector] = useState(false);
   const [selectedToken, setSelectedToken] = useState("ETH");
+  const [slippage, setSlippage] = useState("0.5");
+  const [deadline, setDeadline] = useState("10");
+  const [discount, setDiscount] = useState(false);
   const [walletBalance, setWalletBalance] = useState(200.0234988);
+  const [toggleSlippage, setToggleSlippage] = useState(false);
+  const [toggleDeadline, setToggleDeadline] = useState(false);
+  const [toggleDiscount, setToggleDiscount] = useState(false);
 
   const handleSliderChange = (x) => {
     setSplitValue({ x: parseFloat(x.toFixed(2)) });
@@ -58,6 +66,7 @@ const SplitInput = ({ connected, handleConnect }) => {
     <>
       {toggleTokenSelector && (
         <TokenSelectorModal
+          selectedToken={selectedToken}
           setSelectedToken={(token) => setSelectedToken(token)}
           onClose={() => setToggleTokenSelector(false)}
         />
@@ -72,10 +81,128 @@ const SplitInput = ({ connected, handleConnect }) => {
           onClose={() => setToggleSplitModal(false)}
         />
       )}
-      <div className="bg-white p-[20px] rounded-[30px] flex flex-col min-w-[642px]">
-        <div className="flex items-center gap-1 self-end">
-          <Image width={12} height={11} src={"/signal.png"} alt="signal" />
-          <Image width={12} height={12} src={"/setting.png"} alt="setting" />
+      <div className="bg-white p-[20px] rounded-[30px] flex flex-col min-w-[642px] relative">
+        <div className="flex items-center gap-2 self-end">
+          <div>
+            <Image width={12} height={11} src={"/signal.png"} alt="signal" />
+          </div>
+          <div
+            onClick={() => setToggleSettings(!toggleSettings)}
+            className={`${
+              toggleSettings && "bg-[#D3E3EB]/50 p-2 rounded-[100px]"
+            } flex items-center gap-1 transition ease-in-out cursor-pointer`}
+          >
+            <Image width={12} height={12} src={"/setting.png"} alt="setting" />
+            {toggleSettings && <div className="text-[10px]">settings</div>}
+          </div>
+
+          {toggleSettings && (
+            <div className="absolute w-[246px] z-10 right-[1rem] top-[3.5rem] ring-1 ring-white bg-[#D3E3EB] px-[20px] py-[10px] rounded-[8px] text-[11px]">
+              <div className="flex flex-col">
+                <div className="flex items-center justify-between py-3">
+                  <div>Max Slippage</div>
+                  <div
+                    onClick={() => setToggleSlippage(!toggleSlippage)}
+                    className="flex cursor-pointer"
+                  >
+                    <div className="font-bold">0.5%</div>
+                    <div className="cursor-pointer">
+                      <Image
+                        width={16}
+                        height={16}
+                        src={"/chevdown-dark.png"}
+                        alt="arrow"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {toggleSlippage && (
+                  <div className="flex items-center justify-between pb-2">
+                    <div>Custom Slippage</div>
+                    <div className="flex cursor-pointer items-center bg-white/20 justify-between pr-1 border-b border-b-white">
+                      <input
+                        onChange={(e) => setSlippage(e.target.value)}
+                        className="w-[55px] py-1 text-right font-bold bg-transparent focus:outline-none"
+                        type="text"
+                        value={slippage}
+                      />
+                      %
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <div className="bg-white w-full h-[0.5px]"></div>
+
+              <div className="flex flex-col">
+                <div className="flex items-center justify-between py-3">
+                  <div>Transaction Deadline</div>
+
+                  <div
+                    onClick={() => setToggleDeadline(!toggleDeadline)}
+                    className="flex cursor-pointer "
+                  >
+                    <div className="font-bold">10 min</div>
+                    <div className="cursor-pointer">
+                      <Image
+                        width={16}
+                        height={16}
+                        src={"/chevdown-dark.png"}
+                        alt="arrow"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {toggleDeadline && (
+                  <div className="flex items-center justify-between pb-2">
+                    <div>Custom Deadline</div>
+                    <div className="flex cursor-pointer items-center bg-white/20 justify-between pr-1 border-b border-b-white">
+                      <input
+                        onChange={(e) => setDeadline(e.target.value)}
+                        className="w-[55px] pr-1 py-1 text-right font-bold bg-transparent focus:outline-none"
+                        type="text"
+                        value={deadline}
+                      />{" "}
+                      min
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <div className="bg-white w-full h-[0.5px]"></div>
+
+              <div className="flex flex-col">
+                <div className="flex items-center justify-between py-3">
+                  <div>Max Premium/Discount to NTV</div>
+                  <div
+                    onClick={() => setToggleDiscount(!toggleDiscount)}
+                    className="flex cursor-pointer"
+                  >
+                    <div className="font-bold">{discount ? "ON" : "OFF"}</div>
+                    <div className="cursor-pointer">
+                      <Image
+                        width={16}
+                        height={16}
+                        src={"/chevdown-dark.png"}
+                        alt="arrow"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {toggleDiscount && (
+                  <div className="flex items-center justify-between pb-2">
+                    <ToggleButton
+                      isChecked={discount}
+                      setIsChecked={(value) => setDiscount(value)}
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
         </div>
         <div className="px-[15.86px] py-[13.75px] flex flex-col gap-0.5">
           <div className="text-xs">I deposit</div>
