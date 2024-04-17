@@ -63,7 +63,7 @@ const SplitModal = ({
                     <Image
                       width={24}
                       height={24}
-                      src={`/${selectedToken}.png`}
+                      src={`/${selectedToken.toLowerCase()}.png`}
                       alt={selectedToken}
                     />
                   )}
