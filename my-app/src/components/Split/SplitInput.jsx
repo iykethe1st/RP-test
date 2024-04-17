@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import SplitSlider from "./SplitSlider";
 import InputSlider from "react-input-slider";
 import SplitModal from "./SplitModal";
+import { addCommasToNumber } from "@/utils";
 
 const SplitInput = ({ connected, handleConnect }) => {
   const [toggleSplitModal, setToggleSplitModal] = useState(false);
@@ -262,7 +263,7 @@ const SplitInput = ({ connected, handleConnect }) => {
               )}
             </div>
             <div className="text-[13px] text-[#8CA8C3]">
-              $ {calculateUSD() || 0}
+              $ {addCommasToNumber(splitAmount * 3200).toFixed(2) || 0}
             </div>
           </div>
           {connected && parseFloat(splitAmount) > 0 && (
