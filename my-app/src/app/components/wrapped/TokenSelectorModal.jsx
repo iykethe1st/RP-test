@@ -58,8 +58,10 @@ const TokenSelectorModal = ({ onClose, setSelectedToken, selectedToken }) => {
     onClose();
   };
 
-  const filteredTokens = TOKENS.filter((token) =>
-    token.symbol.toUpperCase().includes(searchQuery.toUpperCase())
+  const filteredTokens = TOKENS.filter(
+    (token) =>
+      token.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      token.symbol.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (

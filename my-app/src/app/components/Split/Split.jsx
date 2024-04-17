@@ -4,6 +4,8 @@ import { useState } from "react";
 import TransactionSteps from "./TransactionSteps";
 
 const Split = ({ connected, handleConnect }) => {
+  const [toggleFaq, setToggleFaq] = useState(false);
+
   return (
     <div className="flex flex-col">
       <div className="flex flex-col items-center gap-8">
@@ -30,6 +32,13 @@ const Split = ({ connected, handleConnect }) => {
             />
           </div>
         </div>
+
+        {toggleFaq && (
+          <div>
+            <div></div>
+            <div></div>
+          </div>
+        )}
       </div>
     </div>
   );
