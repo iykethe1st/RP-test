@@ -263,7 +263,7 @@ const SplitInput = ({ connected, handleConnect }) => {
               )}
             </div>
             <div className="text-[13px] text-[#8CA8C3]">
-              $ {addCommasToNumber(splitAmount * 3200).toFixed(2) || 0}
+              $ {addCommasToNumber(splitAmount * 3200) || 0}
             </div>
           </div>
           {connected && parseFloat(splitAmount) > 0 && (
