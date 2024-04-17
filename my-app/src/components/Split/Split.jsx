@@ -23,9 +23,12 @@ const Split = ({ connected, handleConnect }) => {
 
       {connected && <TransactionSteps />}
       <div className="bg-white/50 rounded-[20px] px-[15px] py-3 mt-[60px] cursor-pointer">
-        <div className="w-full flex items-center justify-between">
+        <div
+          onClick={() => setToggleFaq(!toggleFaq)}
+          className="w-full flex items-center justify-between"
+        >
           <div>FAQ</div>
-          <div onClick={() => setToggleFaq(!toggleFaq)}>
+          <div>
             <Image
               className=""
               width={20}
@@ -39,14 +42,14 @@ const Split = ({ connected, handleConnect }) => {
         {toggleFaq && (
           <div className="w-full flex flex-col gap-4 mt-2">
             <div className="bg-[#D3E3EB] rounded-[24px] pl-[15px] pr-[25px] py-[14px]">
-              <div className="flex justify-between items-center">
+              <div
+                onClick={() => setToggleSplitFaqIndex(!toggleSplitFaqIndex)}
+                className="flex justify-between items-center"
+              >
                 <div className="font-medium text-[14px]">
                   How does the split functionality work?
                 </div>
-                <div
-                  onClick={() => setToggleSplitFaqIndex(!toggleSplitFaqIndex)}
-                  className="font-light text-[13px] text-[#7A8AA0]"
-                >
+                <div className="font-light text-[13px] text-[#7A8AA0] h-full">
                   {toggleSplitFaqIndex ? (
                     <HiOutlineMinus className="w-4 h-4" />
                   ) : (
@@ -62,16 +65,16 @@ const Split = ({ connected, handleConnect }) => {
             </div>
 
             <div className="bg-[#D3E3EB] rounded-[24px] pl-[15px] pr-[25px] py-[14px]">
-              <div className="flex justify-between items-center">
+              <div
+                onClick={() => setToggleRiskFaqIndex(!toggleRiskFaqIndex)}
+                className="flex justify-between items-center"
+              >
                 <div className="font-medium text-[14px]">
                   {" "}
                   What are RiskON BTC and RiskOFF BTC, and how do they differ
                   from each other?
                 </div>
-                <div
-                  onClick={() => setToggleRiskFaqIndex(!toggleRiskFaqIndex)}
-                  className="font-light text-[13px] text-[#7A8AA0]"
-                >
+                <div className="font-light text-[13px] text-[#7A8AA0]">
                   {toggleRiskFaqIndex ? (
                     <HiOutlineMinus className="w-4 h-4" />
                   ) : (

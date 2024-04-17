@@ -230,7 +230,8 @@ const SplitInput = ({ connected, handleConnect }) => {
               <input
                 onChange={handleChange}
                 className="focus:outline-none bg-transparent text-[24px] text-right"
-                value={splitAmount || "0.0"}
+                value={splitAmount}
+                placeholder="0.0"
               />
             </div>
           </div>
@@ -305,7 +306,7 @@ const SplitInput = ({ connected, handleConnect }) => {
                         height: 40,
                         backgroundColor: "#322F35",
                         borderRadius: 0,
-                        position: "relative", // Make sure the parent div is relatively positioned
+                        position: "relative",
                       },
                     }}
                   />

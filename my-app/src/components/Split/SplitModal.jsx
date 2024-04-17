@@ -1,4 +1,4 @@
-import { addCommasToNumber } from "@/app/utils";
+import { addCommasToNumber } from "@/utils";
 import Image from "next/image";
 import { Button } from "../wrapped";
 import { useEffect, useState } from "react";

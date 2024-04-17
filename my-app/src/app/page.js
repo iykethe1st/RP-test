@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import NavBar from "./components/NavBar";
-import { Split } from "./components/Split";
+import NavBar from "../components/NavBar";
+import { Split } from "../components/Split";
 
 export default function Home() {
   const [connected, setConnected] = useState(false);
